@@ -1,18 +1,20 @@
+const template = await fetch('components/card/card-template.html')
+    .then(response => response.text())
+    .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        return doc.querySelector('template');
+    });
+
 class MyCard extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        this.onClick = null;
+        this.onClick;
     }
 
     async connectedCallback() {
-        const template = await fetch('components/card/card-template.html');
-        const conteudoTemplate = await template.text();
-        const div = document.createElement('div');
-        div.innerHTML = conteudoTemplate;
-
-        const componente = div.querySelector('template');
-        this.shadowRoot.appendChild(componente.content.cloneNode(true));
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
 
         const card = this.shadowRoot.querySelector('.card');
         this.shadowRoot.querySelector('.title').textContent = this.getAttribute('title') || 'Sem título';
