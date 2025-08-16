@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cards Template</title>
+</head>
+
+<body>
+  <div id="container">
+    <my-card id="cardHome" title="Home" content="Ir para página inicial"></my-card>
+    <my-card id="cardPerfil" title="Perfil" content="Ver seu perfil"></my-card>
+    <my-card id="cardConfig" title="Configurações" content="Ajuste do sistema"></my-card>
+
+    <script type="module" src="components/card/card.js"></script>
+    <script>
+      // Espera o DOM carregar
+      window.addEventListener('DOMContentLoaded', () => {
+        const home = document.getElementById('cardHome');
+        const perfil = document.getElementById('cardPerfil');
+        const config = document.getElementById('cardConfig');
+
+        // Define funções diferentes para cada card
+        home.onClick = () => alert('Indo para Home!');
+        perfil.onClick = () => console.log('Abrindo Perfil...');
+        config.onClick = () => alert('Abrindo Configurações!');
+      });
+    </script>
+
+</body>
+
+</html>
